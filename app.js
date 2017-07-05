@@ -3,9 +3,29 @@ const bodyParser = require('body-parser')
 const app = express();
 const sassMiddleware = require('node-sass-middleware')
 const path = require('path');
+const session = require('express-session');
+const mongoose = require('mongoose');
 
 app.use(bodyParser.urlencoded({ extended: false}))
 app.set('view engine', 'pug');
+
+//user express-session
+app.use(session({
+  secret: "This is the secret",
+  resave: true,
+  saveUninitialized: false
+}));
+
+//make user-session available in all templates
+app.use(function(req, res, next) {
+  res.locals.currentUser= req.session.userId;
+  next();
+})
+
+//use Mongoose
+mongoose.connect('mongodb://localhost/learnbox');
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
 
 //use sass
 app.use(sassMiddleware({
@@ -24,7 +44,6 @@ app.use(routes)
 //include collections routes
 const collections = require('./routes/collections')
 app.use('/collections', collections)
-
 
 // error handlers
 app.use((req, res, next) => {

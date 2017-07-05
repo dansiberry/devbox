@@ -1,0 +1,16 @@
+#container-header {
+  height: 100px;
+  background-color: lightgrey;
+  ul {
+    display: flex;
+    list-style: none;
+    li {
+      a {
+        color: dodgerblue;
+      }
+      font-size: 16px;
+      margin: 15px;
+    }
+  }
+}
+

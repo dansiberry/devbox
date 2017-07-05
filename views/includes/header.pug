@@ -1,0 +1,15 @@
+section.header
+  .col-xs-12#container-header
+    ul
+      li
+        a(href="/") Home
+      if currentUser
+        li
+          a(href="profile") Profile
+        li
+          a(href="sign-out") sign out
+      if !currentUser
+        li
+          a(href="sign-in") sign in
+        li
+          a(href="register") sign up

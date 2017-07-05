@@ -3,6 +3,18 @@ h1, h2, h3, h4, p {
   color: grey;
   font-family: sans-serif; }
 
+#container-header {
+  height: 100px;
+  background-color: lightgrey; }
+  #container-header ul {
+    display: flex;
+    list-style: none; }
+    #container-header ul li {
+      font-size: 16px;
+      margin: 15px; }
+      #container-header ul li a {
+        color: dodgerblue; }
+
 /*
 ==============================================
 CSS3 ANIMATION CHEAT SHEET
