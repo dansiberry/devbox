@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1 This is the Kit show.
+  a(href= kit[0].id + "/edit") Edit
+
+  p title: #{kit[0].title}
+  p Content: #{kit[0].content}
+  p sections:
+  each section in sections
+    p= section.title
+    p= section.content
+    each resource in section.resources
+      p= resource.title
+      p= resource.link
+

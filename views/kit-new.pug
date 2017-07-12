@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  div(class="col-xs-6 col-xs-offset-3")
+    h1 New Kit
+    form(method='POST' action='/kits/new')
+            div.form-group
+              label(for='title') title:
+              input#title.form-control(type='text', placeholder='title..' name='kitTitle')
+            div.form-group
+              label(for='content') Conetent:
+              input#content.form-control(type='text' name='kitContent')
+            div.form-group#form-end
+            button#add-section.btn.btn-primary(type='button' onClick="addSection()") Add section
+            button.btn.btn-primary(type='submit') Submit

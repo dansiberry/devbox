@@ -5,9 +5,11 @@ section.header
         a(href="/") Home
       if currentUser
         li
-          a(href="profile") Profile
+          a(href="../profile") Profile
         li
           a(href="sign-out") sign out
+        li
+          a(href="/kits/new") New kit
       if !currentUser
         li
           a(href="sign-in") sign in

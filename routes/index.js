@@ -1,6 +1,12 @@
 const express = require('express');
 const router = express.Router();
-var User = require('../models/user')
+const User = require('../models/user');
+const Kit = require('../models/kit');
+//tells express to load index.js file
+const mid = require('../middleware');
+const util = require('util');
+
+router.use('/', require('./kits'))
 
 //homepage
 router.get('/', (req, res) => {
@@ -9,7 +15,7 @@ router.get('/', (req, res) => {
   });
 
 //sign-in get
-router.get('/sign-in', (req, res) => {
+router.get('/sign-in', mid.mustBeLoggedOut, (req, res) => {
     res.render('sign-in', {title: 'sign in'});
   });
 
@@ -47,7 +53,7 @@ router.get('/sign-out', (req, res, next) => {
   });
 
 //user create
-router.post('/register', (req, res, next) => {
+router.post('/register', mid.mustBeLoggedOut, (req, res, next) => {
     // res.locals.prompt = "Some database values"
     // Check all fields are given
     if (req.body.email &&
@@ -78,26 +84,23 @@ router.post('/register', (req, res, next) => {
   })
 
 //user new
-router.get('/register', (req, res) => {
+router.get('/register', mid.mustBeLoggedOut, (req, res) => {
     // res.locals.prompt = "Some database values"
     res.render('register')
   })
 
 //user profile
-router.get('/profile', (req, res, next) => {
-    // res.locals.prompt = "Some database values"
-    if (!req.session.userId) {
-     const err = new Error('You are not signed in');
-     return next(err);
-    }
-    User.findById(req.session.userId).exec(function(error, user) {
-      if(error){
-        return next(error);
-      }
-      else {
-        res.render('profile', {title: 'profile', email: user.email});
-      }
-    })
-  })
+router.get('/profile', mid.mustBeLoggedIn, (req, res, next) => {
+       Kit.find({user: res.locals.currentUser}, function (err, kits){
+        if(err){
+          next(error);
+        }
+        else {
+         res.render('profile', {title: 'profile', user: res.locals.currentUser, userKits: kits});
+        }
+      });
+});
 
 module.exports = router;
+
+
