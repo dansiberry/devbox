@@ -1,3 +1,4 @@
+    //console.log(util.inspect(sections, {showHidden: false, depth: null}) + 'SECTIONS')
 const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();

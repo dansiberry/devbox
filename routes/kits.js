@@ -33,6 +33,7 @@ router.get('/kits/new', (req, res) => {
 
 //kits create
 router.post('/kits/new', mid.mustBeLoggedIn, (req, res, next) => {
+   console.log(util.inspect(req.body, {showHidden: false, depth: null}))
    if (req.body.kitTitle &&
       req.body.kitContent &&
       req.body.sections[0].sectionTitle){
@@ -44,10 +45,23 @@ router.post('/kits/new', mid.mustBeLoggedIn, (req, res, next) => {
     }
 })
 
+//kits update
+router.post('/kit/:link/edit', mid.mustBeLoggedIn, (req, res, next) => {
+   // console.log(util.inspect(req.body, {showHidden: false, depth: null}))
+   if (req.body.kitTitle &&
+      req.body.kitContent &&
+      req.body.sections[0].sectionTitle){
+      Kit.updateKit(req, res, next);
+   }
+    else {
+       const err = new Error('All fields are required');
+       return next(err);
+    }
+})
+
 //kits edit
-router.get('/kit/:id/edit', mid.mustBeLoggedIn, (req, res, next) => {
-    Kit.find({_id: req.params.id}).populate('sections')
-    .exec( function (err, kit) {
+router.get('/kit/:link/edit', mid.mustBeLoggedIn, (req, res, next) => {
+    Kit.find({link: req.params.link}).exec( function (err, kit) {
       if(err){
         return next(err);
       }
@@ -58,7 +72,6 @@ router.get('/kit/:id/edit', mid.mustBeLoggedIn, (req, res, next) => {
             return next(err)
           }
           else {
-            // console.log(util.inspect(sections, {showHidden: false, depth: null}))
             res.render('kit-edit', {kit: kit, sections: sections, req: req, res: res})
           }
         })
@@ -67,10 +80,11 @@ router.get('/kit/:id/edit', mid.mustBeLoggedIn, (req, res, next) => {
 })
 
 //kit show
-router.get('/kit/:id', (req, res, next) => {
-    Kit.find({_id: req.params.id}).populate('sections')
+router.get('/kit/:link', (req, res, next) => {
+    Kit.find({link: req.params.link}).populate('sections')
     .exec( function (err, kit) {
       if(err){
+
         return next(err);
       }
       else{
@@ -80,7 +94,6 @@ router.get('/kit/:id', (req, res, next) => {
             return next(err)
           }
           else {
-            console.log(util.inspect(sections, {showHidden: false, depth: null}))
             res.render('kit-show', {kit: kit, sections: sections, req: req, res: res})
           }
         })

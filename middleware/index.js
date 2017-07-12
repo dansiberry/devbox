@@ -17,7 +17,6 @@ function mustBeLoggedIn(req, res, next) {
       }
       else {
        res.locals.currentUser = user
-       console.log(res.locals.currentUser.email);
        next();
       }
     });

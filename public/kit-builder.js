@@ -1,4 +1,4 @@
-console.log('hello');
+
 
 // $('#add-section').click(addSectionInput);
 // $('#delete-section').click(deleteSection);
@@ -25,7 +25,6 @@ function sectionHtml(){
 }
 
 function resourceHtml(parentSection){
- console.log(parentSection);
  return `
    <div class="form-group resource">
      <label for="resourceTitle">

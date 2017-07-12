@@ -14,8 +14,14 @@ const ResourceSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  user: { type: mongoose.Schema.Types.ObjectId,
-    ref: 'User' }
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
+   kit: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Kit'
+  }
 });
 
 ResourceSchema.statics.createResources = async function(sections, req, next) {
@@ -30,7 +36,8 @@ ResourceSchema.statics.createResources = async function(sections, req, next) {
         resourceData = {
           title: value.resourceTitle,
           link: value.resourceLink,
-          user: req.session.userId
+          user: req.session.userId,
+          kit: section.kit
         };
         let resource = await Resource.create(resourceData)
         section.resources.push(resource);
