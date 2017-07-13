@@ -7,12 +7,34 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
 const sassMiddleware = require('node-sass-middleware');
+const bonsai_url    = process.env.BONSAI_URL;
+const elasticsearch = require('elasticsearch');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: false}))
 app.set('view engine', 'pug');
+
+
+  const client = new elasticsearch.Client({
+                              host: bonsai_url,
+                              log: 'trace'
+                          });
+
+  // Test the connection:
+  // Send a HEAD request to "/" and allow
+  // up to 30 seconds for it to complete.
+  client.ping({
+    requestTimeout: 30000,
+  }, function (error) {
+    if (error) {
+      console.error('elasticsearch cluster is down!');
+    } else {
+      console.log('All is well');
+    }
+  });
+
 
 //use Mongoose
 if (process.env.MONGODB_URI) {
