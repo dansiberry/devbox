@@ -15,7 +15,12 @@ app.use(bodyParser.urlencoded({ extended: false}))
 app.set('view engine', 'pug');
 
 //use Mongoose
-mongoose.connect('mongodb://localhost/learnbox');
+if (process.env.MONGODB_URI) {
+    mongoose.connect(process.env.MONGODB_URI);
+} else {
+  mongoose.connect('mongodb://localhost/learnbox');
+}
+
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
