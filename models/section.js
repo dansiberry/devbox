@@ -37,4 +37,3 @@ SectionSchema.statics.createSections = async function(kit, req, next) {
 
 const Section = mongoose.model('Section', SectionSchema);
 module.exports = Section;
-

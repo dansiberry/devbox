@@ -3,7 +3,6 @@ const Section = require('./section');
 const Resource = require('./resource');
 const util = require('util');
 const db = mongoose.connection;
-const mongoosastic = require('mongoosastic')
 
 
 const KitSchema = new mongoose.Schema({
@@ -81,6 +80,5 @@ KitSchema.pre('remove', async function(next) {
   }
 });
 
-KitSchema.plugin(mongoosastic)
 const Kit = mongoose.model('Kit', KitSchema);
 module.exports = Kit;

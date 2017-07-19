@@ -8,33 +8,12 @@ const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
 const sassMiddleware = require('node-sass-middleware');
 const bonsai_url    = process.env.BONSAI_URL;
-const elasticsearch = require('elasticsearch');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: false}))
 app.set('view engine', 'pug');
-
-
-  const client = new elasticsearch.Client({
-                              host: bonsai_url,
-                              log: 'trace'
-                          });
-
-  // Test the connection:
-  // Send a HEAD request to "/" and allow
-  // up to 30 seconds for it to complete.
-  client.ping({
-    requestTimeout: 30000,
-  }, function (error) {
-    if (error) {
-      console.error('elasticsearch cluster is down!');
-    } else {
-      console.log('All is well');
-    }
-  });
-
 
 //use Mongoose
 if (process.env.MONGODB_URI) {
@@ -62,19 +41,21 @@ app.use(function(req, res, next) {
   next();
 })
 
-//use sass
-app.use(sassMiddleware({
-         src: (__dirname + '/sass'),
-         dest: (__dirname + '/public'),
-         debug: true,
-         })
-);
-
-app.use(express.static( path.join( './public' ) ) );
+app.use(express.static( path.join( './assets/dist' ) ) );
 
 //include basic routes
 const routes = require('./routes')
 app.use(routes)
+
+// favicon requests
+app.use((req, res, next) => {
+  if (req.url === '/favicon.ico') {
+    res.writeHead(200, {'Content-Type': 'image/x-icon'} );
+    res.end();
+    console.log('favicon requested');
+    return;
+  }
+})
 
 // error handlers
 app.use((req, res, next) => {
