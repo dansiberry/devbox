@@ -14,6 +14,14 @@ router.get('/', (req, res) => {
     res.render('index', {title: 'Leanbox'});
   });
 
+//kits api
+router.get('/api', (req, res, next) => {
+    Kit.find({}, function(err, kits){
+      if(err) return next(err);
+      res.json(kits);
+    })
+});
+
 //sign-in get
 router.get('/sign-in', mid.mustBeLoggedOut, (req, res) => {
     res.render('sign-in', {title: 'sign in'});

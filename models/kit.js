@@ -24,19 +24,24 @@ const KitSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  keywords: {
+    type: String,
+    required: true,
+  },
   user: { type: mongoose.Schema.Types.ObjectId,
     ref: 'User' }
 });
 
 KitSchema.statics.createKit = function(req, res, next) {
-  run(req, res, next).catch(error => console.error(error.stack));
+  run(req, res, next).catch(error => next(error));
 
   async function run(req, res, next) {
     kitData = {
       title: req.body.kitTitle,
       content: req.body.kitContent,
       user: req.session.userId,
-      link: req.body.kitTitle.replace(/\s/g,'-') + "-" + Math.floor(Math.random()*1000000)
+      link: req.body.kitTitle.replace(/\s/g,'-') + "-" + Math.floor(Math.random()*1000000),
+      keywords: req.body.kitTitle + " " + req.body.kitContent
     };
     let kit = await Kit.create(kitData)
     let sections = await Section.createSections(kit, req, next);
