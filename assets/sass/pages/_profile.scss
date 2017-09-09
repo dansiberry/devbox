@@ -1,0 +1,38 @@
+.kit-index-block {
+  justify-content:center;
+  border: 1px solid lightgrey;
+  display:flex;
+  align-items:center;
+  height:100px;
+  cursor:pointer;
+  margin-bottom: 15px;
+  background-color: white;
+}
+
+#profile-filter {
+  margin-bottom: 20px;
+  font-family: helvetica;
+  font-weight: bold;
+  color: lightgrey;
+}
+
+.link-info {
+  position: absolute;
+  left: 25px;
+  top: 5px;
+  display:flex;
+
+  p {
+    color: #bbbbbb;
+    margin-left: 10px;
+    margin-top: 8px;
+  }
+}
+
+#chain {
+  width: 15px;
+}
+
+#my-boxes {
+  color: $brand-col;
+}

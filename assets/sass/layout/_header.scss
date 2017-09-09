@@ -1,16 +1,45 @@
 #container-header {
   height: 100px;
-  background-color: lightgrey;
-  ul {
-    display: flex;
-    list-style: none;
-    li {
-      a {
-        color: dodgerblue;
-      }
-      font-size: 16px;
-      margin: 15px;
-    }
-  }
+  margin-top: 40px;
+  width:100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 3vw;
 }
 
+#logo {
+  width:70px;
+}
+
+.header-buttons-container {
+    display: flex;
+    border-radius: 12px;
+    align-items: center;
+    height: 55px;
+    width: 230px;
+    background-color: white;
+    border: 1px solid #DEDEDE;
+    justify-content: space-around;
+    position:relative;
+    z-index: 99;
+}
+
+.header-buttons-container:after {
+  content: "";
+  display:block;
+  position:absolute;
+  width:55%;
+  left:0;
+  height:100%;
+  border-right:1px solid #DEDEDE;
+}
+
+#sign-in {
+  color: #AAAAAA;
+  margin-top: 12px;
+  text-align: right;
+  font-family: 'gotham';
+  color: #AAAAAA;
+  font-size: 14px;
+  font-weight: 500;
+}

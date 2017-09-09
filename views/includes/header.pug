@@ -1,17 +1,27 @@
 section.header
   .col-xs-12#container-header
-    ul
-      li
-        a(href="/") Home
-      if currentUser
-        li
-          a(href="../profile") Profile
-        li
-          a(href="sign-out") sign out
-        li
-          a(href="/kits/new") New kit
+    .header-buttons-container
+      a(href="/" style="z-index:99")
+        img#logo(src="../../../../images/logo.svg")
       if !currentUser
-        li
-          a(href="sign-in") sign in
-        li
-          a(href="register") sign up
+        a#sign-in(href="../sign-in") Sign in
+      if currentUser
+        a#sign-in(href="../profile") My links
+
+
+
+    //- ul
+    //-   li
+    //-     a(href="/") Home
+    //-   if currentUser
+    //-     li
+    //-       a(href="../profile") Profile
+    //-     li
+    //-       a(href="../sign-out") sign out
+    //-     li
+    //-       a(href="/kits/new") New kit
+    //-   if !currentUser
+    //-     li
+    //-       a(href="../sign-in") sign in
+    //-     li
+    //-       a(href="../register") sign up

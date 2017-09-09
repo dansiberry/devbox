@@ -1,3 +1,63 @@
+#cloud-bottom {
+  position: fixed;
+  bottom:0;
+  left:-20px;
+  width: 110%;
+  min-height:35vh
+}
 
+#cloud-1 {
+  position: fixed;
+  left: 10vw;
+  top: 10vh;
+}
+#cloud-2 {
+  position: fixed;
+  left: 30vw;
+  top: 30vh;
+}
 
+.landing-container {
+  position:fixed;
+  padding: 0 10vw;
+  width: 100vw;
+  height: 100vh;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  transition: 1s;
+  opacity:1;
+}
+
+.active .landing-container {
+  opacity: 0 !important;
+  bottom:-1900px;
+}
+
+.homepage-wrapper:after {
+    content: "";
+    display:block;
+    width:100vw;
+    height:20vh;
+    position:fixed;
+    bottom:-5vw;
+    background-color: white
+  }
+
+.landing-hook {
+  text-align:center;
+  display: flex;
+  align-items:center;
+  width: 40vw;
+  justify-content: center;
+  flex-direction:column;
+}
+
+.landing-hook h1 {
+  font-family: 'proxima-nova-bold';
+}
+
+#link-box {
+    width: 35vw;
+}
 

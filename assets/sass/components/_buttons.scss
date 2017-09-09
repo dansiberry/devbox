@@ -1,0 +1,93 @@
+.lc-btn {
+  background-color: $brand-col;
+  color:white;
+  border:none;
+  font-family: helvetica;
+  font-weight: bold;
+  border-radius: 35px;
+  padding: 10px 40px;
+  font-size: 18px;
+}
+
+#start {
+  margin-top: 30px;
+}
+
+#submit-box {
+  background-color: $brand-col;
+  opacity: 0;
+  transition:1s;
+  background-color: transparent;
+  color:$brand-col;
+  border:none;
+  margin-left: 40px;
+}
+#delete-section, #delete-resource {
+   opacity: 0;
+    transition:1s;
+    border: none;
+    color: lightgrey;
+    position: absolute;
+    top: 4px;
+    right: 0px;
+    background-color: transparent;
+}
+#add-section {
+     background-color: transparent;
+     border:none;
+     opacity:0;
+     transition:1s;
+     color: $brand-col;
+     text-align: right;
+     position:relative;
+}
+#add-section:after {
+     content: "+";
+     position:absolute;
+     right:-5px;
+     top:8px;
+     font-weight: bold;
+     font-size: 20px;
+}
+#resource-add {
+  background-color: $brand-col;
+  position: absolute;
+  font-family: helvetica;
+  font-weight: bold;
+  bottom: 40px;
+  left: calc(50% - 65px);
+  border-radius: 35px;
+  border: none;
+  padding:8px 30px;
+  font-size: 16px;
+  margin-right: 20px;
+}
+
+.active button {
+  opacity: 1 !important;
+}
+
+.main-form-buttons {
+  display:flex;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  justify-content:center;
+  width: 0px;
+  position: absolute;
+  margin: bottom 0;
+  bottom: 10;
+  left: 50%;
+}
+
+#edit-kit {
+    transition:1s;
+    border: none;
+    position: absolute;
+    top: 25px;
+    font-size: 16px;
+    right: -75px;
+    background-color: transparent;
+  a {
+    color: $brand-col;
+  }
+}

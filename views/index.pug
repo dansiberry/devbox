@@ -1,5 +1,24 @@
 extends layout
 
 block content
-  h1 This is the homepage.
-  p= prompt
+  div.homepage-wrapper
+    img#cloud-bottom(src="images/cloud-bottom.svg")
+    img#cloud-1(src="images/cloud-2.svg")
+    img#cloud-2(src="images/cloud-1.svg")
+    div.landing-container
+      img#link-box(src="images/link-box.svg")
+      div.landing-hook
+        h1 Share and store the best bits of the internet
+        button#start.lc-btn(type='button' onClick="window.formActivate(), window.addSection()") Start
+
+    div(class="col-xs-6 col-xs-offset-3 main-form-container")
+      form(method='POST' id="main-form" action='/kits/new')
+              div.form-group
+                input#kit-title.form-control(type='text', placeholder='Name your linkbox' name='kitTitle')
+              div.form-group
+                input#kit-content.form-control(type='text' value="null" name='kitContent')
+              div.form-group#form-end
+
+              div.main-form-buttons
+                button#add-section.btn.btn-primary(type='button' onClick="window.addSection()") Add </br> section
+                button#submit-box.btn.btn-primary(type='submit') Done

@@ -9,7 +9,12 @@ const util = require('util');
 router.use('/', require('./kits'))
 
 //homepage
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
+
+// User.findOne({ 'email': 'master@master.com' }, function (err, person) {
+//   if (err) return next(err);
+//   console.log(person.id);
+// })
     res.locals.prompt = "Some database values"
     res.render('index', {title: 'Leanbox'});
   });
@@ -99,12 +104,19 @@ router.get('/register', mid.mustBeLoggedOut, (req, res) => {
 
 //user profile
 router.get('/profile', mid.mustBeLoggedIn, (req, res, next) => {
-       Kit.find({user: res.locals.currentUser}, function (err, kits){
+       Kit.find({user: res.locals.currentUser}).populate('sections').populate('resources').exec( function (err, kits){
         if(err){
           next(error);
         }
         else {
-         res.render('profile', {title: 'profile', user: res.locals.currentUser, userKits: kits});
+         let count = 0
+         for(i=0; i<kits.length; i++ ){
+           kits[i].count = 0
+           for(z=0; z<kits[i].sections.length; z++) {
+             kits[i].count += kits[i].sections[z].resources.length
+           }
+         }
+         res.render('profile', {title: 'profile', user: res.locals.currentUser, userKits: kits, count: count});
         }
       });
 });

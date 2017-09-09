@@ -1,0 +1,143 @@
+#main-form{
+  position:relative;
+}
+
+.main-form-container {
+  opacity:0;
+  transition: 1s;
+  z-index: -1;
+}
+
+.active .main-form-container {
+  opacity:1;
+  z-index: 1;
+}
+
+#kit-title {
+  border:none;
+  box-shadow: none;
+  text-align: center;
+  background-color: transparent;
+  font-size: 26px;
+  font-family: 'Gotham';
+  font-weight: bold;
+  color: $off-black;
+}
+#kit-title::placeholder {
+  color: $off-black;
+  background-color: transparent;
+}
+#kit-content {
+  display:none;
+}
+.section {
+  position: relative;
+  border: 1px solid white;
+  background-color: white;
+  padding-bottom: 70px;
+  // height: 100%;
+  transition: 1s;
+  border-radius: 5px;
+  animation-name: grow-section;
+  animation-duration:.8s;
+}
+
+.active .section {
+  border:1px solid lightgrey;
+  margin-top: 30px;
+}
+
+.section #content {
+  display:none;
+}
+.section #title {
+  background-color: transparent;
+  font-size: 14px;
+  box-shadow: none;
+  height:40px;
+  opacity: 0;
+  border:none;
+  margin-bottom: 20px;
+  border-radius:0;
+  border-bottom: 1px solid lightgrey;
+  transition: 0.5s;
+}
+.active .section #title {
+  opacity: 1;
+  margin-bottom: 50px;
+}
+
+.section #type {
+  display:none;
+}
+
+.resource.form-group {
+  position:relative;
+  height: 68px;
+  // height:40px;
+  transition:1s;
+  margin-bottom: 45px;
+  animation-name: grow-resource;
+  animation-duration: 1s;
+}
+
+
+#resource-title {
+  font-family: 'gotham';
+  font-weight: bold;
+  color:$off-black;
+  font-size: 19px;
+ text-align: center;
+ border:none;
+ box-shadow: none;
+ transition:1s;
+}
+#resource-title::placeholder {
+  color:$off-black;
+}
+#resource-link {
+  text-align: center;
+ border:none;
+ transition:1s;
+ box-shadow: none;
+ position:relative;
+}
+
+#form-end {
+  display:none;
+}
+
+.resource:after {
+  content:"";
+  display:block;
+  position:absolute;
+  height:2px;
+  width:80%;
+  margin-left: 10%;
+  border-top:1px solid lightgrey;
+}
+
+
+@keyframes grow-resource {
+  0%{
+    height:0px;
+    margin-bottom: 0px;
+  }
+  100%{
+    height:68px;
+    margin-bottom: 45px;
+  }
+}
+
+@keyframes grow-section {
+  0%{
+    // height:0px;
+    margin: 0px;
+    padding:0;
+  }
+  100%{
+    // height:initial;
+    padding-bottom: 70px;
+    margin-top: 30px;
+  }
+}

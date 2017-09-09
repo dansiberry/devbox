@@ -1,4 +1,36 @@
+$brand-col: #26B0F6;
+$off-black : #4C4C4C;
+
 h1, h2, h3,h4, p {
   color: grey;
-  font-family: sans-serif;
+  font-family:  sans-serif;
+}
+
+h1, h2, h3 , h4 {
+  font-family: 'gotham';
+  color: $off-black;
+}
+
+body {
+  background-color : #f4f6f6 !important;
+}
+
+
+button:focus {outline:0 !important;}
+
+input:focus::placeholder {
+  opacity: 0;
+}
+
+.shrink-hide {
+  overflow: hidden;
+  height:0px !important;
+  transform: scale(0, 0);
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  font-size: 2px;
+  border:none !important;
+  opacity: 0;
 }

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Section = require('./section');
 const Resource = require('./resource');
+const User = require('./user');
 const util = require('util');
 const db = mongoose.connection;
 
@@ -13,7 +14,6 @@ const KitSchema = new mongoose.Schema({
   },
   content: {
     type: String,
-    required: true,
     trim: true,
   },
   sections: [{
@@ -26,7 +26,6 @@ const KitSchema = new mongoose.Schema({
   },
   keywords: {
     type: String,
-    required: true,
   },
   user: { type: mongoose.Schema.Types.ObjectId,
     ref: 'User' }
@@ -36,13 +35,31 @@ KitSchema.statics.createKit = function(req, res, next) {
   run(req, res, next).catch(error => next(error));
 
   async function run(req, res, next) {
-    kitData = {
+
+  if (req.session.userId) {
+      kitData = {
       title: req.body.kitTitle,
       content: req.body.kitContent,
       user: req.session.userId,
       link: req.body.kitTitle.replace(/\s/g,'-') + "-" + Math.floor(Math.random()*1000000),
-      keywords: req.body.kitTitle + " " + req.body.kitContent
+      keywords: req.body.kitTitle.toLowerCase() + " " + req.body.kitContent.toLowerCase()
     };
+  }
+  else {
+        kitData = {
+        title: req.body.kitTitle,
+        content: req.body.kitContent,
+        user: req.session.userId,
+        link: req.body.kitTitle.replace(/\s/g,'-') + "-" + Math.floor(Math.random()*1000000),
+        keywords: req.body.kitTitle.toLowerCase() + " " + req.body.kitContent.toLowerCase()
+        };
+      User.findOne({ 'email': 'master@master.com' }, function (err, person) {
+      if (err) return next(err);
+      let master = person
+      kitData.user = person.id
+      })
+  }
+
     let kit = await Kit.create(kitData)
     let sections = await Section.createSections(kit, req, next);
     for(i = 0; i < sections.length; i++){
@@ -57,6 +74,7 @@ KitSchema.statics.createKit = function(req, res, next) {
 KitSchema.statics.updateKit = function(req, res, next) {
   run(req, res, next).catch(error => next(error));
   async function run(req, res, next) {
+    console.log(req.body);
     kitData = {
       title: req.body.kitTitle,
       content: req.body.kitContent,

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="1065px" height="182px" viewBox="0 0 1065 182" enable-background="new 0 0 1065 182" xml:space="preserve">
+<title>cloud</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1">
+	<g id="cloud" transform="translate(1.000000, 0.000000)">
+		<g id="Group" transform="translate(171.981018, 81.821637)">
+			<path id="Line" fill="none" stroke="#6ABAE3" stroke-width="2" stroke-linecap="square" d="M5.125,0.239v17.722"/>
+			<path id="Line-Copy-2" fill="none" stroke="#6ABAE3" stroke-width="2" stroke-linecap="square" d="M9.995,15.088l-4.637,4.129"/>
+			<path id="Line-Copy-3" fill="none" stroke="#6ABAE3" stroke-width="2" stroke-linecap="square" d="M0.255,15.088l4.637,4.129"/>
+		</g>
+		<path id="Oval-Copy-Copy" fill="#FFFFFF" stroke="#EFEFEF" d="M42.635,126.871c55.195,0,99.94-23.699,99.94-52.936
+			C142.576,44.7,97.831,21,42.635,21C-12.559,21,1.949,44.7,1.949,73.936C1.949,103.172-12.559,126.871,42.635,126.871z"/>
+		<ellipse id="Oval" fill="#FFFFFF" stroke="#EFEFEF" stroke-miterlimit="10" cx="931.904" cy="109.527" rx="132.096" ry="59.766"/>
+		<ellipse id="Oval-Copy" fill="#FFFFFF" stroke="#EFEFEF" cx="757.94" cy="93.936" rx="99.939" ry="52.936"/>
+		<ellipse id="Oval-Copy-2" fill="#FFFFFF" stroke="#EFEFEF" cx="610.469" cy="87.327" rx="99.939" ry="66.596"/>
+		<ellipse id="Oval-Copy-4" fill="#FFFFFF" stroke="#EFEFEF" cx="379" cy="67.521" rx="116" ry="66.597"/>
+		<ellipse id="Oval-Copy-3" fill="#FFFFFF" stroke="#EFEFEF" cx="482.566" cy="77.912" rx="103.706" ry="66.596"/>
+		<ellipse id="Oval-Copy-6" fill="#FFFFFF" stroke="#EFEFEF" cx="211.638" cy="82.824" rx="145.639" ry="81.176"/>
+		<polygon id="Rectangle-11" fill="#FFFFFF" points="0.226,76.059 1064,98.543 1064,181.93 0.226,181.93 		"/>
+		<rect id="Rectangle-12" x="312" y="32" fill="#FFFFFF" width="45.272" height="48.667"/>
+		<rect id="Rectangle-12-Copy-4" x="549" y="43" fill="#FFFFFF" width="45.272" height="48.666"/>
+		<rect id="Rectangle-12-Copy-3" x="375" y="27" fill="#FFFFFF" width="45.272" height="48.667"/>
+		<rect id="Rectangle-12-Copy-3-Copy" x="61" y="42.702" fill="#FFFFFF" width="45.272" height="81.964"/>
+		<rect id="Rectangle-12-Copy" x="685.773" y="60" fill="#FFFFFF" width="45.271" height="48.666"/>
+		<rect id="Rectangle-12-Copy-2" x="839.954" y="79.275" fill="#FFFFFF" width="45.271" height="48.667"/>
+	</g>
+</g>
+</svg>

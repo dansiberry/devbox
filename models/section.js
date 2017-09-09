@@ -29,7 +29,7 @@ SectionSchema.statics.createSections = async function(kit, req, next) {
       content: req.body.sections[i].sectionContent,
       kit: kit._id
     };
-    kit.keywords+= (" " + req.body.sections[i].sectionTitle)
+    kit.keywords+= (" " + req.body.sections[i].sectionTitle.toLowerCase())
     let sec = await Section.create(sectionData)
     returnSections.push(sec)
   }

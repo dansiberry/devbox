@@ -32,8 +32,9 @@ router.get('/kits/new', (req, res) => {
   })
 
 //kits create
-router.post('/kits/new', mid.mustBeLoggedIn, (req, res, next) => {
+router.post('/kits/new', (req, res, next) => {
    console.log(util.inspect(req.body, {showHidden: false, depth: null}))
+       // console.log(req.body);
    if (req.body.kitTitle &&
       req.body.kitContent &&
       req.body.sections[0].sectionTitle){
@@ -49,7 +50,6 @@ router.post('/kits/new', mid.mustBeLoggedIn, (req, res, next) => {
 router.post('/kit/:link/edit', mid.mustBeLoggedIn, (req, res, next) => {
    // console.log(util.inspect(req.body, {showHidden: false, depth: null}))
    if (req.body.kitTitle &&
-      req.body.kitContent &&
       req.body.sections[0].sectionTitle){
       Kit.updateKit(req, res, next);
    }
