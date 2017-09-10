@@ -1,14 +1,19 @@
 extends layout
-
 block content
   div.homepage-wrapper.active
     img#cloud-bottom(src="../images/cloud-bottom.svg")
     img#cloud-1(src="../images/cloud-2.svg")
     img#cloud-2(src="../images/cloud-1.svg")
     div(class="col-xs-6 col-xs-offset-3 kit-show-container")
-      button.lc-btn#edit-kit
-        a(href= kit[0].link + "/edit") Edit
-
+      if !editable
+        if !favorited
+          button.lc-btn#favorite-kit
+            a(href= kit[0]._id + "/favorite") Add to favorites
+      if editable
+        button.lc-btn#edit-kit
+          a(href= kit[0].link + "/edit") Edit
+        button.lc-btn#delete-kit
+          a(href= kit[0].link + "/delete") Delete
       h1#kit-show-title #{kit[0].title}
       //- p Content: #{kit[0].content}
       //- p sections:

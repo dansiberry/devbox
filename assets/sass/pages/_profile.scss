@@ -34,5 +34,27 @@
 }
 
 #my-boxes {
-  color: $brand-col;
+  color: lightgrey;
 }
+
+#favorites-container {
+ bottom: -110px;
+ left: 0px;
+ transition: 1s;
+ opacity:1;
+ position: absolute;
+}
+
+.out-of-view {
+  opacity: 0 !important;
+  left:200vw !important;
+}
+
+#userkits-container {
+  left: 0px;
+  transition: 1s;
+  bottom: -110px;
+  opacity:1;
+  position: absolute;
+}
+

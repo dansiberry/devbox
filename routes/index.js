@@ -104,21 +104,37 @@ router.get('/register', mid.mustBeLoggedOut, (req, res) => {
 
 //user profile
 router.get('/profile', mid.mustBeLoggedIn, (req, res, next) => {
-       Kit.find({user: res.locals.currentUser}).populate('sections').populate('resources').exec( function (err, kits){
+      Kit.find({user: res.locals.currentUser}).populate('sections').populate('resources').exec( function (err, kits){
         if(err){
           next(error);
         }
         else {
-         let count = 0
-         for(i=0; i<kits.length; i++ ){
-           kits[i].count = 0
-           for(z=0; z<kits[i].sections.length; z++) {
-             kits[i].count += kits[i].sections[z].resources.length
-           }
-         }
-         res.render('profile', {title: 'profile', user: res.locals.currentUser, userKits: kits, count: count});
+           let count = 0
+           for(i=0; i<kits.length; i++ ){
+             kits[i].count = 0
+             for(z=0; z<kits[i].sections.length; z++) {
+               kits[i].count += kits[i].sections[z].resources.length
+             }
+            }
+           User.find({_id: res.locals.currentUser}).populate('favorites').populate('sections').exec( function (err, user){
+             if(err){
+              next(error);
+             }
+             else {
+
+               let countFav = 0
+               for(i=0; i<user[0].favorites.length; i++ ){
+                 user[0].favorites[i].count = 0
+                 for(z=0; z<user[0].favorites[i].sections.length; z++) {
+                   user[0].favorites[i].count += 1
+                   console.log(user[0].favorites[i].sections[z])
+                 }
+               }
+               res.render('profile', {title: 'profile', user: res.locals.currentUser, userKits: kits, count: count, favorites: user[0].favorites});
+             }
+           })
         }
-      });
+      })
 });
 
 module.exports = router;

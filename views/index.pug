@@ -14,11 +14,15 @@ block content
     div(class="col-xs-6 col-xs-offset-3 main-form-container")
       form(method='POST' id="main-form" action='/kits/new')
               div.form-group
-                input#kit-title.form-control(type='text', placeholder='Name your linkbox' name='kitTitle')
+                input#kit-title.form-control(type='text', placeholder='Name your linkbox' name='kitTitle' required)
               div.form-group
                 input#kit-content.form-control(type='text' value="null" name='kitContent')
               div.form-group#form-end
 
               div.main-form-buttons
                 button#add-section.btn.btn-primary(type='button' onClick="window.addSection()") Add </br> section
-                button#submit-box.btn.btn-primary(type='submit') Done
+                button#submit-box.btn.btn-primary(type='submit' onClick="window.checkForm(event)") Done
+                div.flag#add-section-flag
+                  p Add a section
+                div.flag#add-link-flag
+                  p Add a link
