@@ -1,22 +1,57 @@
 extends layout
 
 block content
-  div(class="col-xs-6 col-xs-offset-3 active")
+  div(class="col-xs-6 col-xs-offset-3 active" id="edit-box")
     form(method='POST' action= 'edit' id="main-form")
       div.form-group
         input#kit-title.form-control(type='text', placeholder='title..' name='kitTitle' value= kit[0].title)
       for section, index in sections
         - let parentSection = index
-        div.form-group.section
-          input(class="form-control" id="content" value="null" type="text" name="sections[${sectionCount}][sectionContent]")
+        div.form-group.section(id=parentSection)
+          input(class="form-control" id="content" value="null" type="text" name='sections[' + index + '][sectionContent]')
           input#title.form-control(type='text' name='sections[' + index + '][sectionTitle]' value = section.title)
           for resource, index in section.resources
             div.form-group.resource
               input#resource-title.form-control(type='text' name='[resources][sec-' + parentSection + '][no-' + index + '][resourceTitle]' value = resource.title)
               input#resource-link.form-control(type='text' name='[resources][sec-' + parentSection + '][no-' + index + '][resourceLink]' value = resource.link)
+              <button type="button" onClick='window.deleteResource(this)' id="delete-resource" class="btn btn-primary"><i class="fa fa-trash-o" aria-hidden="true"></i> </button>
           <button type="button" onClick='window.resourceAdd(this)' id="resource-add" class="btn btn-primary">Add Link </button>
+          <button type="button" onClick='window.deleteSection(this)' id="delete-section" class="btn btn-primary"><i class="fa fa-trash-o" aria-hidden="true"></i> </button>
       div.form-group#form-end
       div.main-form-buttons
         button#add-section.btn.btn-primary(type='button' onClick="window.addSection()") Add </br> section
         button#submit-box.btn.btn-primary(type='submit') Done
+
+
+
+//- extends layout
+
+//- block content
+//-     form(method='POST' action= 'edit')
+//-             div.form-group
+//-               label(for='title') title:
+//-               input#title.form-control(type='text', placeholder='title..' name='kitTitle' value= kit[0].title)
+//-             div.form-group
+//-               label(for='content') Conetent:
+//-               input#content.form-control(type='text' name='kitContent' value = kit[0].content)
+//-             for section, index in sections
+//-               - let parentSection = index
+//-               div.form-group
+//-                 label(for='section') Section title:
+//-                 input#content.form-control(type='text' name='sections[' + index + '][sectionTitle]' value = section.title)
+//-               div.form-group
+//-                 label(for='section') Section content:
+//-                 input#content.form-control(type='text' name='sections[' + index + '][sectionContent]' value = section.content)
+//-               for resource, index in section.resources
+//-                 p= parentSection
+//-                 div.form-group
+//-                   label(for='resource') Resource title:
+//-                   input#content.form-control(type='text' name='[resources][sec-' + parentSection + '][no-' + index + '][resourceTitle]' value = resource.title)
+//-                 p= parentSection
+//-                 div.form-group
+//-                   label(for='resource') Resource link:
+//-                   input#content.form-control(type='text' name='[resources][sec-' + parentSection + '][no-' + index + '][resourceLink]' value = resource.link)
+//-             div.form-group#form-end
+//-             button#add-section.btn.btn-primary(type='button' onClick="addSection()") Add section
+//-             button.btn.btn-primary(type='submit') Submit
 

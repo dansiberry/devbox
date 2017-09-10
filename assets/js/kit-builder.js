@@ -2,12 +2,15 @@
 // $('#delete-section').click(deleteSection);
   let sectionCount = 0
   let resourceCount = 1
+  if (document.getElementById("edit-box")) {
+    resourceCount = document.getElementsByClassName('resource').length
+  }
 
   window.sectionHtml = function sectionHtml(){
    let thisSection = sectionCount;
    return `
      <div class="form-group section" id="${sectionCount}">
-       <input class="form-control" placeholder="Section 1" id="title"  type="text" name="sections[${sectionCount}][sectionTitle]">
+       <input class="form-control" placeholder="Section 1" id="title" required value="Section 1" type="text" name="sections[${sectionCount}][sectionTitle]">
        <input class="form-control" id="content" value="null" type="text" name="sections[${sectionCount}][sectionContent]">
        <button type="button" onClick='window.deleteSection(this)' id="delete-section" class="btn btn-primary"><i class="fa fa-trash-o" aria-hidden="true"></i> </button>
        <button type="button" onClick='window.resourceAdd(this)' id="resource-add" class="btn btn-primary">Add Link </button>
@@ -18,8 +21,8 @@
   window.resourceHtml = function resourceHtml(parentSection){
    return `
      <div class="form-group resource">
-      <input class="form-control" id="resource-title" type="text" placeholder="title of link" name="[resources][sec-${parentSection}][no-${resourceCount}][resourceTitle]">
-      <input class="form-control" id="resource-link" placeholder="link" type="text" name="[resources][sec-${parentSection}][no-${resourceCount}][resourceLink]">
+      <input class="form-control" required id="resource-title" type="text" placeholder="title of link" name="[resources][sec-${parentSection}][no-${resourceCount}][resourceTitle]">
+      <input class="form-control" required id="resource-link" placeholder="link" type="text" name="[resources][sec-${parentSection}][no-${resourceCount}][resourceLink]">
 
        <input type="checkbox" class="form-control" id="type" name="resourceType" value="Video">
        <input type="checkbox" class="form-control" id="type" name="resourceType" value="Text">
@@ -37,7 +40,7 @@
 
   window.deleteSection = function deleteSection(btn){
    $(btn).parent().addClass('shrink-hide');
-   setTimeout(function() {$(btn).parent().remove()}, 4950);
+   setTimeout(function() {$(btn).parent().remove()}, 950);
    sectionCount--;
   }
 

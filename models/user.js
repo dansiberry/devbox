@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const Kit = require('./kit');
 
 const UserSchema = new mongoose.Schema({
   email: {
@@ -11,7 +12,11 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-  }
+  },
+  favorites: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Kit'
+  }]
 });
 
 //hash and salt passwords

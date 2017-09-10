@@ -1,19 +1,33 @@
 extends layout
 
 block content
-  .container
+  .container(style="position:relative")
     .col-xs-12#profile-filter
+       a(href="/../../sign-out")
+        p sign out
        span Show :
-       span#my-boxes  My boxes
+       button#my-boxes-button(onClick="window.showUserKits()")
+         span#my-boxes.active-tab  My boxes
        span  /
-       span#favorites  Favorites
-    each kit in userKits
-     .col-xs-4
-       a(href="kit/" + kit.link)
-         div.kit-index-block
-           p  #{kit.title}
-           div.link-info
-            img#chain(src="images/chain.svg")
-            p #{kit.count}
+       button#favorites-button(onClick="window.showFavorites()")
+         span#favorites Favorites
+    div#userkits-container.col-xs-12
+      each kit in userKits
+       .col-xs-4.user-kit
+         a(href="kit/" + kit.link)
+           div.kit-index-block
+             p  #{kit.title}
+             div.link-info
+              img#chain(src="images/chain.svg")
+              p #{kit.count}
+    div#favorites-container.col-xs-12.out-of-view
+      each kit in favorites
+       .col-xs-4.favorites
+         a(href="kit/" + kit.link)
+           div.kit-index-block
+             p  #{kit.title}
+             //- div.link-info
+             //-  img#chain(src="images/chain.svg")
+             //-  p #{kit.count}
 
 

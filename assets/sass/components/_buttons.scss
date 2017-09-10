@@ -9,6 +9,9 @@
   font-size: 18px;
 }
 
+.active-tab {
+  color: $brand-col !important;
+}
 #start {
   margin-top: 30px;
 }
@@ -75,7 +78,7 @@
   width: 0px;
   position: absolute;
   margin: bottom 0;
-  bottom: 10;
+  bottom: -110px;
   left: 50%;
 }
 
@@ -89,5 +92,127 @@
     background-color: transparent;
   a {
     color: $brand-col;
+  }
+}
+
+#delete-kit {
+    transition:1s;
+    border: none;
+    position: absolute;
+    top: 55px;
+    font-size: 16px;
+    right: -93px;
+    background-color: transparent;
+  a {
+    color: $brand-col;
+  }
+}
+#favorite-kit {
+    width: 200px;
+    transition: 1s;
+    border: none;
+    position: absolute;
+    top: 90px;
+    line-height: 19px;
+    text-align: left;
+    font-size: 16px;
+    right: -166px;
+    background-color: transparent;
+  a {
+    color: $brand-col;
+  }
+}
+
+div.error {
+    position: absolute;
+    right: -163px;
+    width: 100px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 15px;
+    color: #f62626;
+    height: 50px;
+    top: 10px;
+}
+
+div.error::after {
+    content: "";
+    width: 30px;
+    top: 0;
+    font-family: 'Gotham';
+    left: -44px;
+    height: 20px;
+    background-size: contain;
+    display:block;
+    position:absolute;
+    background-image: url('/images/thumb.svg');
+    animation-name: point;
+    animation-duration: 2s;
+    animation-iteration-count: 2;
+    animation-timing-function: ease;
+}
+
+.flag {
+  position:absolute;
+  bottom:0;
+  opacity:0;
+  transition:0.5s;
+  p {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 15px;
+    color: #f62626;
+  }
+}
+
+.flag::after {
+    content: "";
+    width: 25px;
+    background-repeat: no-repeat;
+    top: 5px;
+    font-family: 'Gotham';
+    left: -24px;
+    height: 25px;
+    background-size: cover;
+    display:block;
+    position:absolute;
+    background-image: url('/images/sigh.svg');
+}
+
+#add-link-flag{
+    width: 120px;
+    height: 40px;
+    left: -30px;
+    bottom: -70px;
+    padding: 10px;
+}
+
+#add-section-flag {
+    width: 120px;
+    height: 40px;
+    left: -30px;
+    bottom: -40px;
+    padding: 10px;
+}
+
+.show-flag {
+  opacity:1 !important;
+}
+
+#favorites-button, #my-boxes-button {
+  border:none;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+@keyframes point {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    transform: translate(-8px, 0px);
+  }
+  100% {
+    transform: translate(0px, 0px);
   }
 }
