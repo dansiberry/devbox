@@ -8,14 +8,14 @@
     src: url('/fonts/gotham-Medium.ttf') format('truetype');
 }
 
-// @font-face {
-//     font-family: 'proxima-nova-bold';
-//     src: url('/fonts/proxima-nova-bold.ttf') format('truetype');
-// }
+@font-face {
+    font-family: 'proxima-bold';
+    src: url('/fonts/proxima-nova-bold.ttf') format('truetype');
+}
 
-// @font-face {
-//     font-family: 'futura-pt-bold';
-//     src: url('/fonts/futura-pt-bold.ttf') format('truetype');
-//     font-weight: normal;
-//     font-style: normal;
-// }
+@font-face {
+    font-family: 'futura-bold';
+    src: url('/fonts/futura-pt-bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

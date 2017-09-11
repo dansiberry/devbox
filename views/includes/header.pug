@@ -2,18 +2,6 @@ section.header
   .col-xs-12#container-header
     .header-buttons-container
       script(src='/bundle.js')
-      style(type="text/css").
-        @font-face {
-            font-family: 'proxima-nova-bold';
-            src: url('/fonts/proxima-nova-bold.ttf') format('truetype');
-        }
-
-        @font-face {
-            font-family: 'futura-pt-bold';
-            src: url('/fonts/futura-pt-bold.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
       a(href="/" style="z-index:99")
         img#logo(src="../../../../images/logo.svg")
       if !currentUser
