@@ -9,6 +9,7 @@ const MongoStore = require('connect-mongo')(session);
 const sassMiddleware = require('node-sass-middleware');
 const bonsai_url    = process.env.BONSAI_URL;
 
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -41,7 +42,7 @@ app.use(function(req, res, next) {
   next();
 })
 
-app.use(express.static( path.join( './assets/dist' ) ) );
+app.use(express.static( path.join( process.cwd() , './assets/dist' ) ) );
 
 //include basic routes
 const routes = require('./routes')
