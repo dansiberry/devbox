@@ -1,0 +1,19 @@
+.register-container h1 {
+    font-family: gotham;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.register-container input {
+  background-color: none;
+  box-shadow: none;
+  border:none;
+  margin: 20px 0px;
+}
+
+
+.register-container input:-webkit-autofill {
+  background-color: white !important;
+  box-shadow: none;
+  border:none;
+}

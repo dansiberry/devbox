@@ -49,15 +49,10 @@ KitSchema.statics.createKit = function(req, res, next) {
         kitData = {
         title: req.body.kitTitle,
         content: req.body.kitContent,
-        user: req.session.userId,
+        user: res.master.id,
         link: req.body.kitTitle.replace(/\s/g,'-') + "-" + Math.floor(Math.random()*1000000),
         keywords: req.body.kitTitle.toLowerCase() + " " + req.body.kitContent.toLowerCase()
         };
-      User.findOne({ 'email': 'master@master.com' }, function (err, person) {
-      if (err) return next(err);
-      let master = person
-      kitData.user = person.id
-      })
   }
 
     let kit = await Kit.create(kitData)

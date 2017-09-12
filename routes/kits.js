@@ -44,7 +44,7 @@ router.get('/kit/:link/delete', (req, res) => {
 })
 
 //kits favorite
-router.get('/kit/:link/favorite', (req, res) => {
+router.get('/kit/:link/favorite',mid.mustBeLoggedIn, (req, res) => {
     Kit.find({_id: req.params.link}).exec( function (err, kit) {
       if(err){
         return next(err);
@@ -68,17 +68,20 @@ router.get('/kit/:link/favorite', (req, res) => {
 
 //kits create
 router.post('/kits/new', (req, res, next) => {
-   console.log(util.inspect(req.body, {showHidden: false, depth: null}))
-       // console.log(req.body);
-   if (req.body.kitTitle &&
-      req.body.kitContent &&
-      req.body.sections[0].sectionTitle){
-      Kit.createKit(req, res, next);
-   }
-    else {
-       const err = new Error('All fields are required');
-       return next(err);
-    }
+
+    User.find({ 'email': 'master@master.com' }, function (err, person) {
+      if (err) return next(err);
+         res.master = person[0]
+         if (req.body.kitTitle &&
+            req.body.kitContent &&
+            req.body.sections[0].sectionTitle){
+            Kit.createKit(req, res, next);
+         }
+          else {
+             const err = new Error('All fields are required');
+             return next(err);
+          }
+    })
 })
 
 //kits update
@@ -138,8 +141,10 @@ router.get('/kit/:link', (req, res, next) => {
                 return next(err);
               }
               else{
-                if((user[0].favorites.indexOf(kit[0].id)) >= 0) {
-                  favorited = true
+                if(user[0]) {
+                  if((user[0].favorites.indexOf(kit[0].id)) >= 0) {
+                    favorited = true
+                  }
                 }
                 res.render('kit-show', {kit: kit, sections: sections, req: req, res: res, editable: editable, favorited: favorited})
               }

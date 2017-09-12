@@ -1,13 +1,13 @@
 extends layout
 
 block content
-  div(class="col-xs-6 col-xs-offset-3")
-    h1 sign in
+  div(class="col-xs-6 col-xs-offset-3 sign-in-container")
+    h1 Sign in
+    button.lc-btn#register
+      a(href= "/Register") Sign-up?
     form(method='POST' action='/sign-in')
             div.form-group
-              label(for='email') Email:
               input#email.form-control(type='email', placeholder='name@email.com' name='email')
             div.form-group
-              label(for='pw') Password:
               input#pw.form-control(type='password' name='password')
-            button.btn.btn-primary(type='submit') sign in
+            button.lc-btn(type='submit') Sign in

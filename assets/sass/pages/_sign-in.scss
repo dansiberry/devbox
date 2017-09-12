@@ -1,0 +1,18 @@
+.sign-in-container h1{
+  font-family: gotham;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+
+.sign-in-container input {
+  background-color: none;
+  box-shadow: none;
+  border:none;
+}
+
+.sign-in-container input:-webkit-autofill {
+  background-color: white !important;
+  box-shadow: none;
+  border:none;
+}
