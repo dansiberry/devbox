@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  div(class="col-xs-6 col-xs-offset-3 active" id="edit-box")
+  div(class="col-sm-6 col-sm-offset-3 col-xs-12 col-xs-offset-0 active" id="edit-box")
     form(method='POST' action= 'edit' id="main-form")
       div.form-group
         input#kit-title.form-control(type='text', placeholder='title..' name='kitTitle' value= kit[0].title)

@@ -1,16 +1,16 @@
 section.header
-  #slide-menu
+  script(src='/bundle.js')
+  #slide-menu(style="opacity:0")
   button#search(onClick="window.toggleMenu()")
   #app
   .col-xs-12#container-header
     .header-buttons-container
-      script(src='/bundle.js')
       a(href="/" style="z-index:99")
         img#logo(src="../../../../images/logo.svg")
       if !currentUser
         a#sign-in(href="../sign-in") Sign in
       if currentUser
-        a#sign-in(href="../profile") My links
+        a#sign-in(href="../../profile") My links
 
 
 

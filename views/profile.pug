@@ -13,7 +13,7 @@ block content
          span#favorites Favorites
     div#userkits-container.col-xs-12
       each kit in userKits
-       .col-xs-4.user-kit
+       .col-md-4.col-sm-6.col-xs-12.user-kit
          a(href="kit/" + kit.link)
            div.kit-index-block
              p  #{kit.title}
@@ -23,7 +23,7 @@ block content
     div#favorites-container.col-xs-12.out-of-view
       div#app
       each kit in favorites
-       .col-xs-4.favorites
+       .col-md-4.col-sm-6.col-xs-12.favorites
          a(href="kit/" + kit.link)
            div.kit-index-block
              p  #{kit.title}

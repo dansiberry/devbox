@@ -11,7 +11,7 @@ block content
         h1 Share and store the best bits of the internet
         button#start.lc-btn(type='button' onClick="window.formActivate(), window.addSection()") Start
 
-    div(class="col-xs-6 col-xs-offset-3 main-form-container")
+    div(class="col-sm-6 col-sm-offset-3 col-xs-12 col-xs-offset-0 main-form-container")
       form(method='POST' id="main-form" action='/kits/new')
               div.form-group
                 input#kit-title.form-control(type='text', placeholder='Name your linkbox' name='kitTitle' required)

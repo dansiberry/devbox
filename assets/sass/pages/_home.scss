@@ -47,6 +47,7 @@
 .landing-hook {
   text-align:center;
   display: flex;
+  min-width: 300px;
   align-items:center;
   width: 40vw;
   justify-content: center;
@@ -62,4 +63,9 @@
 #link-box {
     width: 35vw;
 }
+@media (max-width: 767px) {
+  #link-box {
+    display:none;
+}
+  }
 

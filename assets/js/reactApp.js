@@ -50,13 +50,17 @@ export default class FilteredList extends React.Component {
 class List extends React.Component {
   render(){
     return (
-      <ul className="list-group">
+      <div className="col-xs-12 results-container">
       {
         this.props.kits.map(function(kit) {
-          return <li className="list-group-item" data-category={kit.title} key={kit.link}>{kit.title}</li>
+          return <div className="col-md-4 col-sm-6 col-xs-12" data-category={kit.title} key={kit.link}>
+                    <a href={"/../../../kit/" + kit.link}>
+                      <div className="kit-index-block">{kit.title} </div>
+                    </a>
+                 </div>;
         })
        }
-      </ul>
+      </div>
     )
   }
 }

@@ -1,17 +1,21 @@
 #slide-menu {
-  background-image: url('/images/pattern.png');
+  background-image: url('/images/pattern-2.png');
   background-size: 600px;
   width: 500vw;
   height: 500vh;
   position: fixed;
-  transition: .5s;
+  transition: opacity 1s;
   z-index: 98;
   opacity:0;
   transform:translate(-600vw, -600vw) rotate(45deg);
 }
 
 #slide-menu.slide-menu-active {
-  opacity:1;
+  opacity:1 !important;
+  // animation-name: slideInMenu;
+  // animation-duration:.5s;
+  // animation-delay:0s;
+  // animation-fill-mode: forwards;
   transform:translate(-200vw, -200vw) rotate(45deg);
 }
 
@@ -21,29 +25,43 @@
   height: 80vh;
   background-color: transparent;
   opacity: 0;
-  left:100vw;
-  transition:1s;
+  right:100vw;
+  transition:.5s;
   z-index: 99
 }
 
 #app.search-active {
-  animation-name: dropIn;
-  animation-duration:.5s;
-  animation-delay:.8s;
-  animation-fill-mode: forwards;
+  // animation-name: dropIn;
+  // animation-duration:.5s;
+  // animation-delay:.4s;
+  // animation-fill-mode: forwards;
+      right: 10vw;
+    top:150px;
+    opacity:1;
 }
 
 .slide-menu-active + #search:after {
   content: "Back";
+  width: 120px;
+    height: 50px;
+    line-height: 47px;
+    border: 1px solid lightgrey;
+    background-color: white;
+    // position: fixed;
+    // left: 30px;
+    // top: 45px;
+    border-radius: 15px;
   background-image: none;
   font-family: 'gotham';
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   color: $brand-col;
 }
 
+
 #search {
   width:50px;
+  transition:0.5s;
   height:60px;
   position:fixed;
   left: 30px;
@@ -52,6 +70,7 @@
   border:none;
   background-color: transparent;
 }
+
 
 #search:after {
   display:block;
@@ -64,15 +83,63 @@
   background-size: contain;
   background-repeat: no-repeat;
 }
+#search:hover {
+  transform:scale(1.2, 1.2);
+}
+
+.filter-list input {
+  -webkit-appearance: none;
+    border: none;
+    box-shadow: none;
+    /* border-bottom: 2px solid black; */
+    font-size: 20px;
+    padding: 25px;
+    border-radius: 0px;
+    margin-bottom: 30px;
+    color: black;
+    border: 1px solid lightgrey;
+}
+
+.results-container {
+  padding:0px !important;
+}
+
+.filter-list input:placeholder {
+    font-size: 25px;
+    font-family: 'Gotham';
+    font-weight: bold;
+    color:$off-black;
+}
+
+@media (max-width: 767px) {
+
+  .slide-menu-active + #search:after {
+    content: "X";
+    width: 50px;
+    height: 50px;
+  }
+
+}
 
 @keyframes dropIn{
   0% {
     opacity:0;
-    left:100vw;
+    right:100vw;
   }
   100% {
-    left: 10vw;
+    right: 10vw;
     top:150px;
     opacity:1;
+  }
+}
+@keyframes slideInMenu{
+  0% {
+    transform:translate(-600vw, -600vw) rotate(45deg);
+  }
+  30%{
+    transform:translate(-220vw, -220vw) rotate(45deg);
+  }
+  100% {
+    transform:translate(-200vw, -200vw) rotate(45deg);
   }
 }

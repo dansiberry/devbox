@@ -228,3 +228,19 @@ div.error::after {
     transform: translate(0px, 0px);
   }
 }
+
+@media (max-width: 767px) {
+  #edit-kit {
+      top: -25px;
+      right: 75px;
+  }
+
+  #delete-kit {
+      top: -25px;
+      right: 130px;
+  }
+  #favorite-kit {
+      top: -25px;
+      right: -60px;
+  }
+}
