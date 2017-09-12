@@ -9,6 +9,18 @@ function mustBeLoggedOut(req, res, next) {
   }
 }
 
+// function getReactKits(req, res, next) {
+//      Kit.find({}, function (err, allKits){
+//         if(err){
+//           next(error);
+//         }
+//         else {
+//             res.allKits: allKits
+//         }
+//     })
+// }
+
+
 function mustBeLoggedIn(req, res, next) {
   if(req.session && req.session.userId){
     User.findById(req.session.userId).exec(function(error, user) {

@@ -7,5 +7,6 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.css"
 import "./kit-builder.js"
 import "./profilePage.js"
 import "./form-val.js"
+import "./formControl.js"
 
 

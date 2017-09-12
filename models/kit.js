@@ -36,6 +36,9 @@ KitSchema.statics.createKit = function(req, res, next) {
 
   async function run(req, res, next) {
 
+  //kit content not in use
+  req.body.kitContent = 'null'
+
   if (req.session.userId) {
       kitData = {
       title: req.body.kitTitle,

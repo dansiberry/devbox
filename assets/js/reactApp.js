@@ -24,8 +24,7 @@ export default class FilteredList extends React.Component {
   filterList(event){
     let kits = this.state.allKits;
     let updatedList = kits.filter(function(kit){
-      // console.log(typeof event.target.value)
-      // console.log(typeof kit.keywords)
+      console.log(kit)
       if (kit.keywords.search(event.target.value.toLowerCase()) !== -1){
         return kit
       }

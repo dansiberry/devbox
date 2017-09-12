@@ -21,6 +21,7 @@ block content
               img#chain(src="images/chain.svg")
               p #{kit.count}
     div#favorites-container.col-xs-12.out-of-view
+      div#app
       each kit in favorites
        .col-xs-4.favorites
          a(href="kit/" + kit.link)
