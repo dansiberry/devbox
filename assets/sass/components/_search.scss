@@ -16,7 +16,7 @@
   // animation-duration:.5s;
   // animation-delay:0s;
   // animation-fill-mode: forwards;
-  transform:translate(-200vw, -200vw) rotate(45deg);
+  transform:translate(-300vw, -200vw) rotate(45deg);
 }
 
 #app {
@@ -65,7 +65,7 @@
   height:60px;
   position:fixed;
   left: 45px;
-  top: 35px;
+  top: 45px;
   z-index: 99;
   border:none;
   background-color: transparent;
@@ -91,9 +91,10 @@
   -webkit-appearance: none;
     border: none;
     box-shadow: none;
+    min-height: 50px;
     /* border-bottom: 2px solid black; */
     font-size: 20px;
-    padding: 25px;
+    // padding: 25px;
     border-radius: 0px;
     margin-bottom: 30px;
     color: black;
@@ -109,6 +110,11 @@
     font-family: 'Gotham';
     font-weight: bold;
     color:$off-black;
+}
+
+.slide-menu-active + #search {
+  width:130px;
+  top:35px;
 }
 
 @media (max-width: 767px) {
