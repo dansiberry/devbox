@@ -34,3 +34,17 @@ input:focus::placeholder {
   border:none !important;
   opacity: 0;
 }
+
+#error:after {
+    content: "";
+    width: 50px;
+    height:50px;
+    top: 5px;
+    font-family: 'Gotham';
+    left: 180px;
+
+    background-size: contain;
+    display:block;
+    position:absolute;
+    background-image: url('/images/sigh.svg');
+}

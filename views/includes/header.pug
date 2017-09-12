@@ -9,9 +9,11 @@ section.header
       a(href="/" style="z-index:99")
         img#logo(src="../../../../images/logo.svg")
       if !currentUser
-        a#sign-in(href="../sign-in") Sign in
+        a#sign-in(href="../sign-in")
+          p Sign in
       if currentUser
-        a#sign-in(href="../../profile") My links
+        a#sign-in(href="../../profile")
+          p My links
 
 
 

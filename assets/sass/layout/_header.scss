@@ -34,9 +34,12 @@
   border-right:1px solid #DEDEDE;
 }
 
-#sign-in {
+#sign-in p {
+  display:inline-block;
   color: #AAAAAA;
-  margin-top: 12px;
+  height:16px;
+  margin: 0px;
+  vertical-align: sub;
   text-align: right;
   font-family: 'gotham';
   color: #AAAAAA;
