@@ -33,6 +33,11 @@ ResourceSchema.statics.createResources = async function(sections, req, next) {
     let sec = "sec-" + sectionNumber
     for(var key in req.body.resources[sec]) {
         var value = req.body.resources[sec][key];
+
+        if (!(value.resourceLink.includes("http"))) {
+         value.resourceLink = "http://" + value.resourceLink
+         }
+
         resourceData = {
           title: value.resourceTitle,
           link: value.resourceLink,

@@ -23,5 +23,6 @@ block content
           each resource in section.resources
             div.kit-show-resource
               p#kit-show-resource-title= resource.title
-              p#kit-show-resource-link= resource.link
+              a(href= resource.link)
+                p#kit-show-resource-link= resource.link
 
