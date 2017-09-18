@@ -5,11 +5,17 @@
   height: 500vh;
   position: fixed;
   transition: opacity 1s;
+  filter: contrast(.9);
   z-index: 98;
   opacity:0;
   transform:translate(-600vw, -600vw) rotate(45deg);
 }
 
+.kit-index-block {
+  border-radius: 15px;
+    color: #26b0f6;
+    font-size: 16px;
+}
 #slide-menu.slide-menu-active {
   opacity:1 !important;
   // animation-name: slideInMenu;
