@@ -19,7 +19,7 @@
   text-align: center;
   background-color: transparent;
   font-size: 26px;
-  font-family: 'Gotham';
+  font-family: $sans-serif-stack;
   font-weight: bold;
   color: $off-black;
 }
@@ -87,7 +87,7 @@
 
 
 #resource-title {
-  font-family: 'gotham';
+  font-family: $sans-serif-stack;
   font-weight: bold;
   color:$off-black;
   font-size: 19px;

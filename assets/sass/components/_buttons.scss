@@ -151,7 +151,7 @@ div.error::after {
     content: "";
     width: 30px;
     top: 0;
-    font-family: 'Gotham';
+    font-family: $sans-serif-stack;
     left: -44px;
     height: 20px;
     background-size: contain;
@@ -182,7 +182,7 @@ div.error::after {
     width: 25px;
     background-repeat: no-repeat;
     top: 5px;
-    font-family: 'Gotham';
+    font-family: $sans-serif-stack;
     left: -24px;
     height: 25px;
     background-size: cover;

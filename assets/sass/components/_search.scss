@@ -58,7 +58,7 @@
     // top: 45px;
     border-radius: 15px;
   background-image: none;
-  font-family: 'gotham';
+  font-family: $sans-serif-stack;
   font-size: 20px;
   font-weight: bold;
   color: $brand-col;
@@ -113,7 +113,7 @@
 
 .filter-list input:placeholder {
     font-size: 25px;
-    font-family: 'Gotham';
+    font-family: $sans-serif-stack;
     font-weight: bold;
     color:$off-black;
 }

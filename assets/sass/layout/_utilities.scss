@@ -1,5 +1,7 @@
 $brand-col: #26B0F6;
 $off-black : #4C4C4C;
+$sans-serif-stack: 'Gotham','Montserrat',  sans-serif;
+
 
 h1, h2, h3,h4, p {
   color: grey;
@@ -7,7 +9,7 @@ h1, h2, h3,h4, p {
 }
 
 h1, h2, h3 , h4 {
-  font-family: 'gotham';
+  font-family: $sans-serif-stack;
   color: $off-black;
 }
 
@@ -40,7 +42,7 @@ input:focus::placeholder {
     width: 50px;
     height:50px;
     top: 5px;
-    font-family: 'Gotham';
+    font-family: $sans-serif-stack;
     left: 180px;
 
     background-size: contain;
