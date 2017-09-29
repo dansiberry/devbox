@@ -13,12 +13,14 @@ export default class FilteredList extends React.Component {
     }
   }
 
-  async componentWillMount(){
-    let res = await axios.get('/api')
-    this.setState(
-       {kits : res.data,
+  componentWillMount(){
+      var thiss = this
+      return axios.get('/api').then(function(res) {
+      thiss.setState(
+        {kits : res.data,
         allKits : res.data}
-    )
+      )
+    });
   }
 
   filterList(event){
