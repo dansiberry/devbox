@@ -22,18 +22,24 @@ module.exports = {
           path.resolve(__dirname, "assets"),
           path.resolve(__dirname, "node_modules/jquery")
         ],
-        use: [{
-          loader: 'babel-loader'
-        }],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['env']
+          }
+        },
       },
       {
       test: /\.jsx$/,
       include: [
         path.resolve(__dirname, "assets")
       ],
-      use: [{
-        loader: 'babel-loader'
-      }],
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['env']
+        }
+      },
       },
       { test: /\.css$/,
         use: [
