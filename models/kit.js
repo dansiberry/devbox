@@ -33,6 +33,7 @@ const KitSchema = new mongoose.Schema({
 
 KitSchema.statics.createKit = function(req, res, next) {
   run(req, res, next).catch(error => next(error));
+    console.log("called Create Kit")
 
   async function run(req, res, next) {
 
@@ -90,16 +91,27 @@ KitSchema.statics.updateKit = function(req, res, next) {
   }
 }
 
+KitSchema.statics.hasMinimumCreateInput = function(req, res, next) {
+  if(
+    req.body.hasOwnProperty("kitTitle") &&
+    req.body.hasOwnProperty("kitContent") &&
+    req.body.hasOwnProperty("sections") &&
+    req.body.sections[0].hasOwnProperty("sectionTitle")
+  ){
+    return true
+  }
+}
+
 KitSchema.pre('remove', async function(next) {
   run(next).catch(error => next(error));
   async function run(next) {
     await Section.find({kit: this.id}).remove().exec();
     await Resource.find({kit: this.id}).remove().exec();
-    // console.log(util.inspect(secsToRemove, {showHidden: false, depth: null}) + 'Sections to remove')
-    // console.log(util.inspect(resourcesToRemove, {showHidden: false, depth: null}) + 'Resources to remove')
     next();
   }
 });
+
+
 
 const Kit = mongoose.model('Kit', KitSchema);
 module.exports = Kit;

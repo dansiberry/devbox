@@ -68,20 +68,17 @@ router.get('/kit/:link/favorite',mid.mustBeLoggedIn, (req, res) => {
 
 //kits create
 router.post('/kits/new', (req, res, next) => {
-
-    User.find({ 'email': 'master@master.com' }, function (err, person) {
-      if (err) return next(err);
-         res.master = person[0]
-         if (req.body.kitTitle &&
-            req.body.kitContent &&
-            req.body.sections[0].sectionTitle){
-            Kit.createKit(req, res, next);
-         }
-          else {
-             const err = new Error('All fields are required');
-             return next(err);
-          }
-    })
+   User.find({ 'email': 'master@master.com' }, function (err, person) {
+     if (err) return next(err);
+     res.master = person[0]
+     if (Kit.hasMinimumCreateInput(req, res, next)){
+        Kit.createKit(req, res, next);
+     }
+      else {
+         const err = new Error('All fields are required to create the linkbox');
+         return next(err);
+      }
+   })
 })
 
 //kits update

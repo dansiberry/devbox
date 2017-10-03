@@ -8,7 +8,7 @@
     "npm": "5.2.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/.bin/jasmine-node spec",
     "start": "node app.js",
     "wp-serve": "webpack --config webpack.config.js",
     "wp-build": "webpack -p --config webpack.config.js"
@@ -31,6 +31,7 @@
     "file-loader": "^0.11.2",
     "font-awesome": "^4.7.0",
     "fontawesome": "^4.7.2",
+    "jasmine-node": "^1.14.5",
     "jquery": "^3.2.1",
     "jquery-validation": "^1.17.0",
     "mongoose": "^4.11.1",
@@ -40,6 +41,7 @@
     "pug": "^2.0.0-rc.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "request": "^2.83.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
@@ -49,6 +51,8 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
-    "webpack": "^3.6.0"
+    "postcss-import": "^8.0.2",
+    "webpack": "^3.6.0",
+    "webpack-node-externals": "^1.6.0"
   }
 }
