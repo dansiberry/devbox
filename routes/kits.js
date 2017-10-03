@@ -72,6 +72,7 @@ router.post('/kits/new', (req, res, next) => {
      if (err) return next(err);
      res.master = person[0]
      if (Kit.hasMinimumCreateInput(req, res, next)){
+        console.log("is valid")
         Kit.createKit(req, res, next);
      }
       else {
