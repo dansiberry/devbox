@@ -13,6 +13,10 @@ h1, h2, h3 , h4 {
   color: $off-black;
 }
 
+a:hover {
+  text-decoration: none !important;
+}
+
 body {
   background-color : #f4f6f6 !important;
 }
