@@ -55,3 +55,4 @@ UserSchema.statics.authenticate = function(email, password, callback) {
 
 const User = mongoose.model('User', UserSchema);
 module.exports = User;
+

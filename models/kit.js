@@ -32,62 +32,72 @@ const KitSchema = new mongoose.Schema({
 });
 
 KitSchema.statics.createKit = function(req, res, next) {
-  run(req, res, next).catch(error => next(error));
-    console.log("called Create Kit")
+  run(req, res, next)
 
-  async function run(req, res, next) {
+  function run(req, res, next) {
 
-  //kit content not in use
-  req.body.kitContent = 'null'
+    //kit content not in use
+    req.body.kitContent = 'null'
 
-  if (req.session.userId) {
-      kitData = {
-      title: req.body.kitTitle,
-      content: req.body.kitContent,
-      user: req.session.userId,
-      link: req.body.kitTitle.replace(/\s/g,'-') + "-" + Math.floor(Math.random()*1000000),
-      keywords: req.body.kitTitle.toLowerCase() + " " + req.body.kitContent.toLowerCase()
-    };
-  }
-  else {
+    if (req.session.userId) {
         kitData = {
         title: req.body.kitTitle,
         content: req.body.kitContent,
-        user: res.master.id,
+        user: req.session.userId,
         link: req.body.kitTitle.replace(/\s/g,'-') + "-" + Math.floor(Math.random()*1000000),
         keywords: req.body.kitTitle.toLowerCase() + " " + req.body.kitContent.toLowerCase()
-        };
-  }
-
-    let kit = await Kit.create(kitData)
-    let sections = await Section.createSections(kit, req, next);
-    for(i = 0; i < sections.length; i++){
-      kit.sections.push(sections[i]._id);
+      };
     }
-    await kit.save();
-    let resources = await Resource.createResources(sections, req, next);
-    res.redirect('../kit/' + kit.link)
+    else {
+          kitData = {
+          title: req.body.kitTitle,
+          content: req.body.kitContent,
+          user: res.master.id,
+          link: req.body.kitTitle.replace(/\s/g,'-') + "-" + Math.floor(Math.random()*1000000),
+          keywords: req.body.kitTitle.toLowerCase() + " " + req.body.kitContent.toLowerCase()
+          };
+    }
+    var kit = 0;
+    var sections = 0;
+
+    Kit.create(kitData).then(newKit => {
+        kit = newKit;
+        return Section.createSections(kit, req, next);
+    }).then((newSections) => {
+      sections = newSections
+      for(i = 0; i < sections.length; i++){
+        kit.sections.push(sections[i]._id);
+      }
+      kit.save();
+    }).then(() => {
+      Resource.createResources(sections, req, next);
+    }).then(() => {
+      res.redirect('../kit/' + kit.link)
+    }).catch(error => next(error));
   }
 }
 
 KitSchema.statics.updateKit = function(req, res, next) {
   run(req, res, next).catch(error => next(error));
-  async function run(req, res, next) {
-    console.log(req.body);
+  function run(req, res, next) {
+
     kitData = {
       title: req.body.kitTitle,
       content: req.body.kitContent,
       user: req.session.userId,
       link: req.params.link
     };
-    await Kit.find({link: req.params.link}).remove().exec()
-    let kit = await Kit.create(kitData)
-    let sections = await Section.createSections(kit, req, next);
-    for(i = 0; i < sections.length; i++){
-      kit.sections.push(sections[i]._id);
-    }
-    let resources = await Resource.createResources(sections, req, next);
-    res.redirect('../' + kit.link)
+    Kit.find({link: req.params.link}).remove().exec().then(() => {
+      Kit.create(kitData)
+    }).then((kit) => {
+      Section.createSections(kit, req, next);
+      for(i = 0; i < sections.length; i++){
+        kit.sections.push(sections[i]._id);
+      }
+      Resource.createResources(sections, req, next);
+    }).then(() => {
+      res.redirect('../' + kit.link)
+    })
   }
 }
 
@@ -102,12 +112,14 @@ KitSchema.statics.hasMinimumCreateInput = function(req, res, next) {
   }
 }
 
-KitSchema.pre('remove', async function(next) {
+KitSchema.pre('remove', function(next) {
   run(next).catch(error => next(error));
-  async function run(next) {
-    await Section.find({kit: this.id}).remove().exec();
-    await Resource.find({kit: this.id}).remove().exec();
-    next();
+  function run(next) {
+    Section.find({kit: this.id}).remove().exec().then(() => {
+      Resource.find({kit: this.id}).remove().exec();
+    }).then(() => {
+      next();
+    });
   }
 });
 
@@ -115,3 +127,5 @@ KitSchema.pre('remove', async function(next) {
 
 const Kit = mongoose.model('Kit', KitSchema);
 module.exports = Kit;
+
+

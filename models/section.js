@@ -21,7 +21,8 @@ const SectionSchema = new mongoose.Schema({
     ref: 'Kit' }
 });
 
-SectionSchema.statics.createSections = async function(kit, req, next) {
+SectionSchema.statics.createSections = function(kit, req, next) {
+  let proms = []
   const returnSections = []
   for (i = 0; i < req.body.sections.length; i++) {
     sectionData = {
@@ -30,10 +31,13 @@ SectionSchema.statics.createSections = async function(kit, req, next) {
       kit: kit._id
     };
     kit.keywords+= (" " + req.body.sections[i].sectionTitle.toString().toLowerCase())
-    let sec = await Section.create(sectionData)
-    returnSections.push(sec)
+    proms.push(Section.create(sectionData).then((sec) => {
+      returnSections.push(sec)
+    }))
   }
-  return returnSections
+  return Promise.all(proms).then(() => {
+    return returnSections
+  })
 }
 
 const Section = mongoose.model('Section', SectionSchema);

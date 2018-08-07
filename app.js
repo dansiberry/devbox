@@ -19,6 +19,7 @@ app.set('view engine', 'pug');
 //use Mongoose
 if (process.env.MONGODB_URI) {
     mongoose.connect(process.env.MONGODB_URI);
+    mongoose.Promise = global.Promise;
 } else {
   mongoose.connect('mongodb://localhost/learnbox');
 }

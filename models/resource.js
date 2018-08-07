@@ -24,12 +24,14 @@ const ResourceSchema = new mongoose.Schema({
   }
 });
 
-ResourceSchema.statics.createResources = async function(sections, req, next) {
+ResourceSchema.statics.createResources = function(sections, req, next) {
+  let proms = []
   for(i = 0; i < sections.length; i++){
-    await sectionResource(sections[i], i, req, next)
+    proms.push(sectionResource(sections[i], i, req, next))
   }
 
-  async function sectionResource(section, sectionNumber, req, next){
+  function sectionResource(section, sectionNumber, req, next){
+    let innerProms = []
     let sec = "sec-" + sectionNumber
     for(var key in req.body.resources[sec]) {
         var value = req.body.resources[sec][key];
@@ -44,11 +46,21 @@ ResourceSchema.statics.createResources = async function(sections, req, next) {
           user: req.session.userId,
           kit: section.kit
         };
-        let resource = await Resource.create(resourceData)
-        section.resources.push(resource);
-        await section.save()
-     }
+
+        innerProms.push(Resource.create(resourceData).then((resource) => {
+          section.resources.push(resource);
+          // section.save()
+        }))
+    }
+    console.log('-----innerProms---------')
+    console.log(innerProms)
+    return Promise.all(innerProms).then(() => section.save())
+    console.log("-----------------------")
   }
+  console.log('-----Proms---------')
+  console.log(proms)
+  console.log("-----------------------")
+  return Promise.all(proms)
 }
 
 const Resource = mongoose.model('Resource', ResourceSchema);
