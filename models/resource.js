@@ -24,15 +24,11 @@ const ResourceSchema = new mongoose.Schema({
   }
 });
 
-ResourceSchema.statics.createResources = function(sections, req, next) {
-  let proms = []
-  for(i = 0; i < sections.length; i++){
-    proms.push(sectionResource(sections[i], i, req, next))
-  }
+ResourceSchema.statics.createResources = function(section, index, req, res, next) {
 
-  function sectionResource(section, sectionNumber, req, next){
-    let innerProms = []
-    let sec = "sec-" + sectionNumber
+    let sec = "sec-" + (index + 1)
+    let dataPile = []
+
     for(var key in req.body.resources[sec]) {
         var value = req.body.resources[sec][key];
 
@@ -40,27 +36,19 @@ ResourceSchema.statics.createResources = function(sections, req, next) {
          value.resourceLink = "http://" + value.resourceLink
          }
 
-        resourceData = {
+        dataPile.push({
           title: value.resourceTitle,
           link: value.resourceLink,
           user: req.session.userId,
           kit: section.kit
-        };
-
-        innerProms.push(Resource.create(resourceData).then((resource) => {
-          section.resources.push(resource);
-          // section.save()
-        }))
+        });
     }
-    console.log('-----innerProms---------')
-    console.log(innerProms)
-    return Promise.all(innerProms).then(() => section.save())
-    console.log("-----------------------")
-  }
-  console.log('-----Proms---------')
-  console.log(proms)
-  console.log("-----------------------")
-  return Promise.all(proms)
+    let promisePile = dataPile.map(resourceData => {
+        return Resource.create(resourceData).then((resource) => {
+          section.resources.push(resource)
+        })
+    })
+    return Promise.all(promisePile).then(() => section.save())
 }
 
 const Resource = mongoose.model('Resource', ResourceSchema);

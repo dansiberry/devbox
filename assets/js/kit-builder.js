@@ -1,9 +1,10 @@
 // $('#add-section').click(addSectionInput);
 // $('#delete-section').click(deleteSection);
-  let sectionCount = 0
+  let sectionCount = 1
   let resourceCount = 1
   if (document.getElementById("edit-box")) {
     resourceCount = document.getElementsByClassName('resource').length
+    sectionCount = document.getElementsByClassName('section').length
   }
 
   window.sectionHtml = function sectionHtml(){

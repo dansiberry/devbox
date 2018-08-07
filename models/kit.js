@@ -34,6 +34,10 @@ const KitSchema = new mongoose.Schema({
 KitSchema.statics.createKit = function(req, res, next) {
   run(req, res, next)
 
+  // console.log("------------------")
+  // console.log(util.inspect(req.body, {showHidden: false, depth: null}))
+  // console.log("------------------")
+
   function run(req, res, next) {
 
     //kit content not in use
@@ -62,15 +66,15 @@ KitSchema.statics.createKit = function(req, res, next) {
 
     Kit.create(kitData).then(newKit => {
         kit = newKit;
-        return Section.createSections(kit, req, next);
-    }).then((newSections) => {
+        return Promise.all(req.body.sections.map(section => Section.createSection(section, kit, req, next)))
+    }).then(newSections => {
       sections = newSections
       for(i = 0; i < sections.length; i++){
         kit.sections.push(sections[i]._id);
       }
-      kit.save();
+      return kit.save();
     }).then(() => {
-      Resource.createResources(sections, req, next);
+      return Promise.all(sections.map((section, index) => Resource.createResources(section, index, req, res, next)))
     }).then(() => {
       res.redirect('../kit/' + kit.link)
     }).catch(error => next(error));
@@ -80,24 +84,35 @@ KitSchema.statics.createKit = function(req, res, next) {
 KitSchema.statics.updateKit = function(req, res, next) {
   run(req, res, next).catch(error => next(error));
   function run(req, res, next) {
-
+    console.log("------------------")
+    console.log(util.inspect(req.body, {showHidden: false, depth: null}))
+    console.log("------------------")
     kitData = {
       title: req.body.kitTitle,
       content: req.body.kitContent,
       user: req.session.userId,
       link: req.params.link
     };
-    Kit.find({link: req.params.link}).remove().exec().then(() => {
-      Kit.create(kitData)
-    }).then((kit) => {
-      Section.createSections(kit, req, next);
-      for(i = 0; i < sections.length; i++){
-        kit.sections.push(sections[i]._id);
-      }
-      Resource.createResources(sections, req, next);
-    }).then(() => {
-      res.redirect('../' + kit.link)
-    })
+    let kit = 0
+    return (
+      Kit.find({link: req.params.link}).remove().exec()
+      .then(() => {
+        return Kit.create(kitData)})
+      .then(newKit => {
+          kit = newKit;
+          return Section.createSections(kit, req, next);})
+      .then((newSections) => {
+        sections = newSections
+        for(i = 0; i < sections.length; i++){
+          kit.sections.push(sections[i]._id);
+        }
+        kit.save()})
+      .then(() => {
+        return Resource.createResources(sections, req, next);})
+      .then(() => {
+        res.redirect('../' + kit.link)
+      })
+    )
   }
 }
 

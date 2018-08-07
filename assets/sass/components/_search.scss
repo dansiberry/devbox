@@ -33,7 +33,8 @@
   opacity: 0;
   right:100vw;
   transition:.5s;
-  z-index: 99
+  z-index: 99;
+  overflow: scroll;
 }
 
 #app.search-active {
