@@ -20769,7 +20769,7 @@ var FilteredList = function (_React$Component) {
           _react2.default.createElement(
             'fieldset',
             { className: 'form-group' },
-            _react2.default.createElement('input', { type: 'text', className: 'form-control form-control-lg', placeholder: 'Search', onChange: this.filterList.bind(this) })
+            _react2.default.createElement('input', { type: 'text', className: 'form-control form-control-lg', placeholder: 'Type to search...', onChange: this.filterList.bind(this) })
           )
         ),
         _react2.default.createElement(List, { kits: this.state.kits })

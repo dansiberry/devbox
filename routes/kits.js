@@ -108,6 +108,7 @@ router.get('/kit/:link/edit', mid.mustBeLoggedIn, (req, res, next) => {
             return next(err)
           }
           else {
+            sections = sections.sort((a, b) => a._id < b._id ? -1 : 1)
             res.render('kit-edit', {kit: kit, sections: sections, req: req, res: res})
           }
         })
@@ -144,6 +145,7 @@ router.get('/kit/:link', (req, res, next) => {
                     favorited = true
                   }
                 }
+                sections = sections.sort((a, b) => a._id < b._id ? -1 : 1)
                 res.render('kit-show', {kit: kit, sections: sections, req: req, res: res, editable: editable, favorited: favorited})
               }
             })

@@ -39,7 +39,7 @@ export default class FilteredList extends React.Component {
       <div className="filter-list">
         <form>
         <fieldset className="form-group">
-        <input type="text" className="form-control form-control-lg" placeholder="Search" onChange={this.filterList.bind(this)}/>
+        <input type="text" className="form-control form-control-lg" placeholder="Type to search..." onChange={this.filterList.bind(this)}/>
         </fieldset>
         </form>
       <List kits={this.state.kits}/>

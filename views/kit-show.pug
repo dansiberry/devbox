@@ -20,7 +20,8 @@ block content
       each section in sections
         div.kit-show-section
           p#kit-show-section-title= section.title
-          each resource in section.resources
+          - let resources = section.resources.sort((a, b) => a._id < b._id ? -1 : 1)
+          each resource in resources
             div.kit-show-resource
               p#kit-show-resource-title= resource.title
               a(href= resource.link)

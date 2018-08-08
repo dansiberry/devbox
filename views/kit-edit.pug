@@ -7,13 +7,14 @@ block content
         input#kit-title.form-control(type='text', placeholder='title..' name='kitTitle' value= kit[0].title)
       for section, index in sections
         - let parentSection = index
-        div.form-group.section(id=parentSection)
-          input(class="form-control" id="content" value="null" type="text" name='sections[' + index + '][sectionContent]')
-          input#title.form-control(type='text' name='sections[' + index + '][sectionTitle]' value = section.title)
+        div.form-group.section(id=parentSection+1)
+          input(class="form-control" id="content" value="null" type="text" name='sections[' + (index + 1) + '][sectionContent]')
+          input#title.form-control(type='text' name='sections[' + (index + 1) + '][sectionTitle]' value = section.title)
+          - let resources = section.resources.sort((a, b) => a._id < b._id ? -1 : 1)
           for resource, index in section.resources
             div.form-group.resource
-              input#resource-title.form-control(type='text' name='[resources][sec-' + parentSection + '][no-' + (index + 1) + '][resourceTitle]' value = resource.title)
-              input#resource-link.form-control(type='text' name='[resources][sec-' + parentSection + '][no-' + (index + 1) + '][resourceLink]' value = resource.link)
+              input#resource-title.form-control(type='text' name='[resources][sec-' + (parentSection + 1) + '][no-' + (index + 1) + '][resourceTitle]' value = resource.title)
+              input#resource-link.form-control(type='text' name='[resources][sec-' + (parentSection + 1) + '][no-' + (index + 1) + '][resourceLink]' value = resource.link)
               <button type="button" onClick='window.deleteResource(this)' id="delete-resource" class="btn btn-primary"><i class="fa fa-trash-o" aria-hidden="true"></i> </button>
           <button type="button" onClick='window.resourceAdd(this)' id="resource-add" class="btn btn-primary">Add Link </button>
           <button type="button" onClick='window.deleteSection(this)' id="delete-section" class="btn btn-primary"><i class="fa fa-trash-o" aria-hidden="true"></i> </button>
